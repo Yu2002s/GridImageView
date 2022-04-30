@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GridImageView">
+        <attr name="verticalSpacing" format="dimension"/>
+        <attr name="horizontalSpacing" format="dimension"/>
+        <attr name="maxImageCount" format="integer"/>
+        <attr name="imageCornerRadius" format="dimension"/>
+    </declare-styleable>
+</resources>
