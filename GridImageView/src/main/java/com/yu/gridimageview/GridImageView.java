@@ -23,6 +23,7 @@ import java.util.List;
 /**
  * GridImageView
  * 宫格方式显示ImageView
+ *
  * @author jdy2002
  * emial 2475058223@qq.com
  */
@@ -169,9 +170,6 @@ public class GridImageView extends ViewGroup {
             bottom = top + imageInfo.getHeight();
             child.layout(left, top, right, bottom);
             left += imageInfo.getWidth() + horizontalSpacing;
-            if (loadListener != null) {
-                loadListener.onLoadImage((RoundImageView) child, imageInfo);
-            }
         }
     }
 
@@ -224,6 +222,14 @@ public class GridImageView extends ViewGroup {
         }
         // 改变或者构建 ImageView
         changedOrCreateImageView(urlCount);
+
+        for (int i = 0; i < imageInfoList.size(); i++) {
+            ImageInfo imageInfo = imageInfoList.get(i);
+            RoundImageView imageView = (RoundImageView) getChildAt(i);
+            if (loadListener != null) {
+                loadListener.onLoadImage(imageView, imageInfo);
+            }
+        }
     }
 
     private void changedOrCreateImageView(int urlCount) {
@@ -340,21 +346,46 @@ public class GridImageView extends ViewGroup {
 
     public interface OnImageItemClickListener {
 
+        /**
+         * 图片点击事件监听
+         *
+         * @param position  点击位置
+         * @param imageView 图片
+         */
         void onImageItemClick(int position, RoundImageView imageView);
 
     }
 
     public abstract static class LoadListener {
 
+        /**
+         * 加载图片
+         *
+         * @param imageView 指定图片
+         * @param imageInfo 图片封装的一些信息
+         */
         public abstract void onLoadImage(RoundImageView imageView, ImageInfo imageInfo);
 
+        /**
+         * 显示单张图片，这里可以单独设置一下宽高
+         *
+         * @param imageInfo 图片信息
+         */
         public void getSingleImageViewSize(ImageInfo imageInfo) {
         }
 
+        /**
+         * 最多显示图片数量
+         *
+         * @return 最多显示图片数量
+         */
         public int getMaxImageCount() {
             return MAX_IMAGE_COUNT;
         }
 
+        /**
+         * @return 图片圆角半径
+         */
         public int getImageCornerRadius() {
             return IMAGE_CORNER_RADIUS;
         }

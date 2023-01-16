@@ -127,7 +127,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
             holder.message.setText(mData.get(position).getMessage());
             // 提交数据，并设置单张图片应该显示的宽高
             // 这个LoadListener记得写成全局变量，防止频繁创建
-            holder.gridImageView.submitData(mData.get(position).getImages(), loadListener, 200, 150);
+            List<String> images = mData.get(position).images;
+            holder.gridImageView.submitData(images, loadListener, 600, 500);
         }
 
         @Override

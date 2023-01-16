@@ -3,7 +3,7 @@ apply plugin: 'signing'
 
 def GROUP_ID = 'com.gitee.jdy2002'//改成第一步申请上传权限时填写的Group Id
 def ARTIFACT_ID = 'GridImageView' //随意命名 你自己编写的第三方库的名称
-def VERSION_NAME = '1.0.1' //版本
+def VERSION_NAME = '1.0.2' //版本
 def DESCRIPTION = 'Palace grid display picture'
 def GIT_LOCATION = 'gitee.com/jdy2002/GridImageView' //github项目的链接
 def GIT_LOCATION_URL = 'https://' + GIT_LOCATION
